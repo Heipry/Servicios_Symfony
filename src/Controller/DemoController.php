@@ -2,23 +2,19 @@
 
 namespace App\Controller;
 
-use App\Services\Greeting;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DemoController extends AbstractController
+class DemoController extends BaseController
 {
     /**
      * @Route("/demo/{name}", name="demo")
      */
-    public function index(Greeting $greeting, $name)
+    public function index($name)
     {
-        dump($name);
-        $greet = $greeting->greet($name);
-        /*return $this->render('demo/index.html.twig', [
-            'controller_name' => 'DemoController',
-        ]);*/
+        dump($this->isMaria($name));
+        $greet = $this->greeting->greet($name);
         return new Response($greet);
     }
 }
